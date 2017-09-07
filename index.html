@@ -120,27 +120,42 @@ $(document).ready(function () {
 </div>
 
 
+<div id="in-this-first-exercise-we-use-sql-to-refine-our-search-to-yankee-players-who-have-hit-40-or-more-homeruns-in-one-season" class="section level2">
+<h2>In this first exercise, we use sql to refine our search to yankee players who have hit 40 or more homeruns in one season</h2>
 <p>query&lt;-“SELECT playerID,teamID,yearID,HR FROM Batting WHERE teamID=‘NYA’ and HR&gt;=40”</p>
 <p>sqldf(query)</p>
+</div>
 <div id="section" class="section level1">
 <h1>————————-</h1>
+<div id="after-that-we-adjust-our-search-to-any-player-who-has-hit-between-40-and-60-homeruns-in-one-season" class="section level2">
+<h2>After that, we adjust our search to any player who has hit between 40 and 60 homeruns in one season</h2>
 <p>query&lt;-“SELECT playerID,teamID,yearID,HR,SO FROM Batting WHERE HR&gt;40 and SO&lt;60”</p>
 <p>sqldf(query)</p>
 </div>
+</div>
 <div id="section-1" class="section level1">
 <h1>————————</h1>
+<div id="in-exercise-three-we-adjust-search-for-phillidelphia-players-who-hit-more-than-30-homeruns-in-one-season-between-1970-and-1979" class="section level2">
+<h2>In exercise three, we adjust search for Phillidelphia players who hit more than 30 homeruns in one season (between 1970 and 1979)</h2>
 <p>query&lt;-“SELECT playerID,teamID,yearID,HR FROM Batting WHERE teamID=‘PHI’ and yearID&gt;1969 and yearID&lt;1980 and HR&gt;30”</p>
 <p>sqldf(query)</p>
 </div>
+</div>
 <div id="section-2" class="section level1">
 <h1>————————</h1>
+<div id="next-our-search-is-reconfigured-to-list-players-who-have-hit-more-than-50-homeruns-in-one-season" class="section level2">
+<h2>Next, our search is reconfigured to list players who have hit more than 50 homeruns in one season</h2>
 <p>query&lt;-“SELECT playerID,teamID,yearID,HR FROM Batting WHERE HR&gt;50 ORDER BY HR DESC”</p>
 <p>sqldf(query)</p>
 </div>
+</div>
 <div id="section-3" class="section level1">
 <h1>————————</h1>
+<div id="the-exercises-continue-this-time-with-an-end-game-of-players-who-were-struck-out-less-than-10-times-during-a-season-they-were-up-to-bat-at-least-400" class="section level2">
+<h2>The exercises continue, this time with an end game of players who were struck out less than 10 times during a season they were up to bat at least 400</h2>
 <p>query&lt;-“SELECT playerID,teamID,yearID,SO,AB FROM Batting WHERE SO&lt;10 and AB&gt;=400 ORDER BY SO”</p>
 <p>sqldf(query)</p>
+</div>
 </div>
 
 

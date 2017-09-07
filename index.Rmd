@@ -2,12 +2,15 @@
 title: "Query Lesson Sept 7 2017"
 output: html_document
 ---
+
+##In this first exercise, we use sql to refine our search to yankee players who have hit 40 or more homeruns in one season
 query<-"SELECT playerID,teamID,yearID,HR FROM Batting 
 WHERE teamID='NYA' and HR>=40"
 
 sqldf(query)
 
 #-------------------------
+##After that, we adjust our search to any player who has hit between 40 and 60 homeruns in one season
 
 query<-"SELECT playerID,teamID,yearID,HR,SO FROM Batting WHERE
 HR>40 and SO<60"
@@ -15,6 +18,7 @@ HR>40 and SO<60"
 sqldf(query)
 
 #------------------------
+##In exercise three, we adjust search for Phillidelphia players who hit more than 30 homeruns in one season (between 1970 and 1979)
 
 query<-"SELECT playerID,teamID,yearID,HR FROM Batting
 WHERE teamID='PHI' and yearID>1969 and yearID<1980 and HR>30"
@@ -22,6 +26,7 @@ WHERE teamID='PHI' and yearID>1969 and yearID<1980 and HR>30"
 sqldf(query)
 
 #------------------------
+##Next, our search is reconfigured to list players who have hit more than 50 homeruns in one season
 
 query<-"SELECT playerID,teamID,yearID,HR FROM Batting
 WHERE HR>50 ORDER BY HR DESC"
@@ -29,6 +34,7 @@ WHERE HR>50 ORDER BY HR DESC"
 sqldf(query)
 
 #------------------------
+##The exercises continue, this time with an end game of players who were struck out less than 10 times during a season they were up to bat at least 400
 
 query<-"SELECT playerID,teamID,yearID,SO,AB FROM Batting
 WHERE SO<10 and AB>=400
