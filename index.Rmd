@@ -1,7 +1,14 @@
 ---
-title: "Query Lesson Sept 7 2017"
+title: "Query Lesson Sept 12 2017"
 output: html_document
 ---
+
+```{r}
+library (Lahman)
+library (sqldf)
+```
+
+
 
 ##In this first exercise, we use sql to refine our search to yankee players who have hit 40 or more homeruns in one season
 
@@ -16,8 +23,7 @@ sqldf(query)
 ##After that, we adjust our search to any player who has hit between 40 and 60 homeruns in one season
 
 ```{r}
-query<-"SELECT playerID,teamID,yearID,HR,SO FROM Batting WHERE
-HR>40 and SO<60"
+query<-"SELECT playerID,teamID,yearID,HR,SO FROM Batting WHERE HR>40 and SO<60"
 
 sqldf(query)
 ```
@@ -53,4 +59,3 @@ ORDER BY SO"
 
 sqldf(query)
 ```
-
