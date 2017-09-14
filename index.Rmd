@@ -1,68 +1,81 @@
 ---
-title: "Query Lesson Sept 12 2017"
+title: "Sql Lesson Sept 14"
 output: html_document
 ---
 
-```{r warning=FALSE,message=FALSE}
-library (Lahman)
-library (sqldf)
+library(Lahman)
+library(sqldf)
+
+Group By:
+  
+1.
+```{r}
+query<-"SELECT playerID, sum(HR) FROM Batting 
+WHERE playerID='ruthba01'
+GROUP BY playerID"
+
+sqldf(query)
+```
+
+#----------
+
+Aggregation:
+  
+1.
+```{r}
+query<-"SELECT playerID, sum(HR) FROM Batting
+Group BY playerID
+HAVING sum(HR)>=600
+ORDER BY sum(HR) DESC"
+
+sqldf(query)
+
 ```
 
 
-##Flitering
-
-In this first exercise, we use sql to refine our search to yankee players who have hit 40 or more homeruns in one season
-
+2.
 ```{r}
-query<-"SELECT playerID,teamID,yearID,HR FROM Batting 
-WHERE teamID='NYA' and HR>=40"
+query<-"SELECT playerID, avg(HR) FROM Batting
+GROUP BY playerID
+HAVING avg(HR)>30
+ORDER BY avg(HR) DESC"
+
+sqldf(query)
+```
+
+#------------
+
+joins:
+  
+1.
+```{r}
+query<-"SELECT nameFirst,nameLast,yearID,teamID,HR 
+FROM Batting INNER JOIN Master
+ON Batting.playerID=Master.playerID
+WHERE Batting.playerID='ruthba01'"
 
 sqldf(query)
 ```
 
 
-
-After that, we adjust our search to any player who has hit between 40 and 60 homeruns in one season
-
+2.
 ```{r}
-query<-"SELECT playerID,teamID,yearID,HR,SO FROM Batting WHERE HR>40 and SO<60"
+query<-"SELECT nameFirst,nameLast,teamID,yearID, HR
+FROM Batting INNER JOIN Master
+ON Batting.playerID=Master.playerID
+WHERE HR>50
+ORDER BY HR DESC"
 
 sqldf(query)
 ```
 
 
-
-In exercise three, we adjust search for Phillidelphia players who hit more than 30 homeruns in one season (between 1970 and 1979)
-
+3.
 ```{r}
-query<-"SELECT playerID,teamID,yearID,HR FROM Batting
-WHERE teamID='PHI' and yearID>1969 and yearID<1980 and HR>30"
-
-sqldf(query)
-```
-
-#---------------------
-
-##Ordering
-
-Next, our search is reconfigured to list players who have hit more than 50 homeruns in one season
-
-```{r}
-query<-"SELECT playerID,teamID,yearID,HR FROM Batting
-WHERE HR>50 ORDER BY HR DESC"
-
-sqldf(query)
-```
-
-
-
-##The exercises continue, this time with an end game of players who were struck out less than 10 times during a season they were up to bat at least 400
-
-
-```{r}
-query<-"SELECT playerID,teamID,yearID,SO,AB FROM Batting
-WHERE SO<10 and AB>=400
-ORDER BY SO"
+query<-"SELECT playerID,name,Batting.yearID,Batting.HR
+FROM Batting INNER JOIN Teams
+ON Batting.teamID=Teams.teamID AND Batting.yearID=Teams.yearID
+WHERE playerID='ruthba01'"
 
 sqldf(query)
 ```
